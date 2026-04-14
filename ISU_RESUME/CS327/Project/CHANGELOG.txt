@@ -1,0 +1,10 @@
+2022. 4. 13
+Watching youtube for example.
+2022. 4. 14
+I added starter pokemon selection
+2022. 4. 16
+Start implementing battle
+2022. 4. 18
+Implement formula which is on description and other stuff
+2022. 4. 20
+Finish implementing battle

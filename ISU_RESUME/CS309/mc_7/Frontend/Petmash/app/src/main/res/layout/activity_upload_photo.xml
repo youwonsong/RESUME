@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Pet Photo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#6200EE"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <ImageView
+        android:id="@+id/ivPreview"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="30dp"
+        android:background="#EEEEEE"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_gallery"/>
+
+    <Button
+        android:id="@+id/btnSelectPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="SELECT JPG FROM GALLERY"
+        android:backgroundTint="#BB86FC"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginBottom="15dp"/>
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="SUBMIT PHOTO"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+
+</LinearLayout>

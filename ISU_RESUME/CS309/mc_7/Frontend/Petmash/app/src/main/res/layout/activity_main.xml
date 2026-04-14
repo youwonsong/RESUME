@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvChatLog"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#E0E0E0"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:text="Chat Log..."
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:id="@+id/llTournament"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvChatLog"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/ivPet1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pet_placeholder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VS"
+            android:textSize="24sp"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:id="@+id/ivPet2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pet_placeholder"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnVotePet1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vote Pet 1"
+        android:layout_below="@id/llTournament"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/btnVotePet2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vote Pet 2"
+        android:layout_below="@id/llTournament"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        android:minHeight="?android:attr/actionBarSize" />
+</RelativeLayout>

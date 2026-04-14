@@ -1,0 +1,338 @@
+// Author : Youwon Song, uwon@iastate.edu
+
+Program:
+START:
+  // base = 0, size = 512
+  ADDI X19, XZR, #0          // X19 =initial address of array
+  ADDI X20, XZR, #512        // X20 = size of array
+
+  // fill(a, size)
+  ADD X0, XZR, X19           // X0 = a
+  ADD X1, XZR, X20           // X1 = size
+  BL FILL                    // FILL(a, size): a[i] = fill size-1-i 
+
+  // is_sorted(a, size)  -- check before sort
+  ADD X0, XZR, X19           // X0 = a
+  ADD X1, XZR, X20           // X1 = size
+  BL ISSORTED                // check if sorted
+
+  // stoopid_sort(a, size)
+  ADD X0, XZR, X19           // X0 = a
+  ADD X1, XZR, X20           // X1 = size
+  BL STOOPIDSORT             // call stoopid_sort(a, size) 
+
+  // is_sorted(a, size)  -- sort and check
+  ADD X0, XZR, X19
+  ADD X1, XZR, X20
+  BL ISSORTED                // check after sort
+
+  DUMP                       
+  HALT
+
+
+
+// void swap(long *a, long i, long j)
+//   X0 = base, X1 = i, X2 = j
+SWAP:
+  SUBI SP, SP, #32
+  STUR FP, [SP, #16]
+  STUR LR, [SP, #24]
+  ADDI FP, SP, #32           //move FP to top of new stack frame
+
+  // addr_i = a + i*8
+  LSL  X9, X1, #3            // X9 = i * 8 
+  ADD  X9, X0, X9            // X9 = a + i * 8 → a[i] address
+
+  // addr_j = a + j*8
+  LSL  X10, X2, #3           // X10 = j * 8
+  ADD  X10, X0, X10          // X10 = a + j * 8 → a[j] address
+
+  LDUR X11, [X9, #0]         // X11 = a[i]
+  LDUR X12, [X10, #0]        // X12 = a[j]
+  STUR X12, [X9, #0]         // a[i] = a[j]
+  STUR X11, [X10, #0]        // a[j] = old a[i]
+
+  LDUR FP, [SP, #16]
+  LDUR LR, [SP, #24]
+  ADDI SP, SP, #32
+  BR LR                      // return
+
+
+
+// long max_index(long *a, long i, long j)
+//   X0 = base, X1 = i, X2 = j
+//   return (a[i] > a[j]) ? i : j;
+MAXINDEX:
+  SUBI SP, SP, #32
+  STUR FP, [SP, #16]
+  STUR LR, [SP, #24]
+  ADDI FP, SP, #32
+
+  // read a[i] 
+  LSL  X9, X1, #3            // X9 = i*8
+  ADD  X9, X0, X9            // X9 = a + i*8
+  LDUR X11, [X9, #0]         // X11 = a[i]
+
+  // read a[j] 
+  LSL  X10, X2, #3           // X10 = j*8
+  ADD  X10, X0, X10          // X10 = a + j*8
+  LDUR X12, [X10, #0]        // X12 = a[j]
+
+  // if (a[i] > a[j])
+  SUBS X13, X11, X12         // X13 = a[i] - a[j], 플래그 세팅
+  B.GT MI_LEFT               // if a[i] > a[j] return i
+
+  // else j
+  ADD X0, XZR, X2            // return j
+  B MI_DONE
+
+MI_LEFT:
+  ADD X0, XZR, X1            // return i
+
+MI_DONE:
+  LDUR FP, [SP, #16]
+  LDUR LR, [SP, #24]
+  ADDI SP, SP, #32
+  BR LR
+
+
+
+// long find_largest(long *a, long start, long size)
+//   - in range [start, start+size), return the largest index value.
+//   - if size==1 then start is max index
+//   - else split the range in half, call recursively for both and Maxindex to choose bigger one.
+//   X0 = a, X1 = start, X2 = size
+FINDLARGEST:
+  SUBI SP, SP, #80           // get 80 bytes 
+  // store registers 
+  STUR X19, [SP, #0]
+  STUR X20, [SP, #8]
+  STUR X21, [SP, #16]
+  STUR X22, [SP, #24]
+  STUR X23, [SP, #32]
+  STUR X24, [SP, #40]
+  STUR FP,  [SP, #64]
+  STUR LR,  [SP, #72]
+
+  ADDI FP, SP, #80
+
+  // save
+  ADD X19, XZR, X0           // X19 = a
+  ADD X20, XZR, X1           // X20 = start
+  ADD X21, XZR, X2           // X21 = size
+
+  // if (size == 1) return start;
+  SUBIS X9, X21, #1
+  B.NE FL_RECURSE            // if size != 1then recursive
+  ADD X0, XZR, X20           // X0 = start
+  B FL_RETURN
+
+FL_RECURSE:
+  // half = size / 2
+  LSR X22, X21, #1           // X22 = size >> 1
+
+  // second_start = start + half
+  ADD X23, X20, X22         
+
+  // second_size = (size + 1) / 2
+  ADDI X24, X21, #1
+  LSR  X24, X24, #1          // handles odd and even sizes
+
+  // left = find_largest(a, start, half)
+  ADD X0, XZR, X19           // a
+  ADD X1, XZR, X20           // start
+  ADD X2, XZR, X22           // half
+  BL FINDLARGEST
+  STUR X0, [SP, #48]         // save left index in SP+48
+
+  // right = find_largest(a, second_start, second_size)
+  ADD X0, XZR, X19           // a
+  ADD X1, XZR, X23           // second_start
+  ADD X2, XZR, X24           // second_size
+  BL FINDLARGEST
+  STUR X0, [SP, #56]         // save right index in SP+56
+
+  // return max_index(a, left, right)
+  LDUR X1, [SP, #48]         // X1 = left
+  LDUR X2, [SP, #56]         // X2 = right
+  ADD X0, XZR, X19           // X0 = a
+  BL MAXINDEX                // X0 = bigger value index
+
+FL_RETURN:
+  // restore saved registers
+  LDUR X19, [SP, #0]
+  LDUR X20, [SP, #8]
+  LDUR X21, [SP, #16]
+  LDUR X22, [SP, #24]
+  LDUR X23, [SP, #32]
+  LDUR X24, [SP, #40]
+  LDUR FP,  [SP, #64]
+  LDUR LR,  [SP, #72]
+  ADDI SP, SP, #80
+  BR LR                      // return
+
+
+
+// void stoopid_sort(long *a, long size)
+// repeat finding the largest value in remaining and move it to the end just like Selection sort
+//   X0 = a, X1 = size
+STOOPIDSORT:
+  SUBI SP, SP, #56
+  STUR FP, [SP, #32]
+  STUR LR, [SP, #40]
+  STUR X19, [SP, #0]
+  STUR X20, [SP, #8]
+  STUR X21, [SP, #16]
+  STUR X22, [SP, #24]
+  ADDI FP, SP, #56
+
+  ADD X19, XZR, X0           // X19 = a
+  ADD X20, XZR, X1           // X20 = size
+  ADDI X21, XZR, #0          // X21 = i = 0
+
+SS_LOOP:
+  // if (i >= size-1) break;
+  SUBI X9, X20, #1
+  SUBS X10, X21, X9
+  B.GE SS_DONE               // if i >= size-1 then Done
+
+  // n = find_largest(a, 0, size - i)
+  ADD X0, XZR, X19           // a
+  ADD X1, XZR, XZR           // start = 0
+  SUB X2, X20, X21           // size-i
+  BL FINDLARGEST
+  STUR X0, [SP, #48]         // save max value index in SP+48
+
+  // j = size - i - 1   (put it at the very end)
+  SUB X22, X20, X21
+  SUBI X22, X22, #1
+
+  // swap(a, n, j)
+  LDUR X1, [SP, #48]         // X1 = n (max)
+  ADD  X0, XZR, X19          // X0 = a
+  ADD  X2, XZR, X22          // X2 = j
+  BL SWAP
+
+  // i++
+  ADDI X21, X21, #1
+  B SS_LOOP
+
+SS_DONE:
+  // restore saved registers
+  LDUR X19, [SP, #0]
+  LDUR X20, [SP, #8]
+  LDUR X21, [SP, #16]
+  LDUR X22, [SP, #24]
+  LDUR FP,  [SP, #32]
+  LDUR LR,  [SP, #40]
+  ADDI SP, SP, #56
+  BR LR
+
+
+
+// void fill(long *a, long n)  -- a[i] = n-1-i
+//   X0 = a, X1 = n
+FILL:
+  SUBI SP, SP, #48
+  STUR FP, [SP, #32]
+  STUR LR, [SP, #40]
+  STUR X19, [SP, #0]
+  STUR X20, [SP, #8]
+  STUR X21, [SP, #16]
+  STUR X22, [SP, #24]
+  ADDI FP, SP, #48
+
+  ADD X19, XZR, X0           // X19 = a
+  ADD X20, XZR, X1           // X20 = n
+  ADDI X21, XZR, #0          // i = 0
+
+FILL_LOOP:
+  SUBS X9, X21, X20
+  B.GE FILL_DONE             //if  i >= n then Done
+
+  // val = n - 1 - i
+  SUBI X22, X20, #1          // X22 = n-1
+  SUB  X22, X22, X21         // X22 = n-1-i
+
+  // a[i] = val
+  LSL X9, X21, #3            // i*8
+  ADD X9, X19, X9            // a + i*8
+  STUR X22, [X9, #0]         // a[i] = n-1-i
+
+  ADDI X21, X21, #1          // i++
+  B FILL_LOOP
+
+FILL_DONE:
+  LDUR X19, [SP, #0]
+  LDUR X20, [SP, #8]
+  LDUR X21, [SP, #16]
+  LDUR X22, [SP, #24]
+  LDUR FP,  [SP, #32]
+  LDUR LR,  [SP, #40]
+  ADDI SP, SP, #48
+  BR LR
+
+
+
+// long is_sorted(long *a, long size)
+//   return 1 if nondecreasing, else 0
+//   X0 = a, X1 = size
+ISSORTED:
+  SUBI SP, SP, #40
+  STUR FP, [SP, #24]
+  STUR LR, [SP, #32]
+  STUR X19, [SP, #0]
+  STUR X20, [SP, #8]
+  STUR X21, [SP, #16]
+  ADDI FP, SP, #40
+
+  ADD X19, XZR, X0           // X19 = a
+  ADD X20, XZR, X1           // X20 = size
+
+  // if (size <= 1) return 1;
+  SUBIS X9, X20, #1
+  B.GT IS_CONT               // if size > 1 then loop
+  ADDI X0, XZR, #1           // return 1
+  B IS_EXIT
+
+IS_CONT:
+  ADDI X21, XZR, #1          // i = 1 (compare from the second one)
+
+IS_LOOP:
+  SUBS X9, X21, X20
+  B.GE IS_OK                 // if i >= size then ok, array sorted
+
+  // cur = a[i]
+  LSL X10, X21, #3
+  ADD X10, X19, X10
+  LDUR X11, [X10, #0]
+
+  // prev = a[i-1]
+  SUBI X12, X21, #1
+  LSL X12, X12, #3
+  ADD X12, X19, X12
+  LDUR X13, [X12, #0]
+
+  // if (cur < prev) return 0
+  SUBS X14, X11, X13         // cur - prev
+  B.LT IS_BAD                // if cur < prev then not sorted
+
+  // i++
+  ADDI X21, X21, #1
+  B IS_LOOP
+
+IS_OK:
+  ADDI X0, XZR, #1           // return 1
+  B IS_EXIT
+
+IS_BAD:
+  ADD X0, XZR, XZR           // return 0
+
+IS_EXIT:
+  LDUR X19, [SP, #0]
+  LDUR X20, [SP, #8]
+  LDUR X21, [SP, #16]
+  LDUR FP,  [SP, #24]
+  LDUR LR,  [SP, #32]
+  ADDI SP, SP, #40
+  BR LR
