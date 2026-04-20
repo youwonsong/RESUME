@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex" xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex" xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex" xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex" xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex" xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex" xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex" xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex" xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink" xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:oel="http://schemas.microsoft.com/office/2019/extlst" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:w16cex="http://schemas.microsoft.com/office/word/2018/wordml/cex" xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:w16="http://schemas.microsoft.com/office/word/2018/wordml" xmlns:w16du="http://schemas.microsoft.com/office/word/2023/wordml/word16du" xmlns:w16sdtdh="http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash" xmlns:w16sdtfl="http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock" xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du wp14">
+  <w:body>
+<w:p w14:paraId="224DCD49" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00F9104D">
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Budget Justification</w:t>
+      </w:r>
+    </w:p>
+<w:p w14:paraId="5E052122" w14:textId="3387CE8E" w:rsidR="00D2605A" w:rsidRPr="0046568D" w:rsidRDefault="0013796D" w:rsidP="00FC3F73">
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:commentRangeStart w:id="0"/>
+      <w:r>
+        <w:t>A. Senior/Key Personnel</w:t>
+      </w:r>
+      
+      
+      
+      <w:commentRangeEnd w:id="0"/>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="CommentReference"/>
+          <w:sz w:val="22"/>
+          <w:szCs w:val="26"/>
+        </w:rPr>
+        <w:commentReference w:id="0"/>
+      </w:r>
+    </w:p>
+<w:p w14:paraId="0A000001" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ pi_name }}, Principal Investigator, {{ pi_months }} calendar months each year of project. The PI will lead the project and be responsible for research activities, data interpretation, and preparation of publications and project reports. PI will devote effort to this project commensurate with the requested salary support.</w:t></w:r></w:p>
+<w:p w14:paraId="0A000002" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p for p in key_personnel[1:] %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000003" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ p.name }}, Co-Investigator, {{ p.total_months }} calendar months each year of project. Dr. {{ p.name }} will collaborate on research activities and contribute to project objectives commensurate with the requested salary support.</w:t></w:r></w:p>
+<w:p w14:paraId="0A000004" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="4630144F" w14:textId="30A8C889" w:rsidR="00D2605A" w:rsidRPr="007F4C6A" w:rsidRDefault="007F4C6A" w:rsidP="00D2605A">
+      <w:pPr>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:color w:val="EE0000"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:color w:val="0000FF"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t>[Delete personnel categories that are not used]</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Labor costs for participating faculty and staff are projected costs based on actual monthly salaries for the university calendar year ending 12/31. Labor costs for post docs are based on projected monthly salaries paid by the participating academic departments at ISU. Graduate students receive a stipend based on annual, full or partial academic semester, or summer paid in equal monthly payments. The ISU Graduate College sets the minimum rates for post docs, and rates and appointment start and end dates for graduate students. Undergraduate wages are based on hourly rates typically paid to upper-level undergraduate research assistants in the College of Agriculture and Life Sciences at ISU.</w:t>
+      </w:r>
+      
+      
+      
+      
+    </w:p>
+<w:p w14:paraId="2F4DE87C" w14:textId="0DD173CC" w:rsidR="00D2605A" w:rsidRPr="0046568D" w:rsidRDefault="0013796D" w:rsidP="009C39BF">
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>B. Other Personnel</w:t>
+      </w:r>
+      
+    </w:p>
+<w:p w14:paraId="0A000005" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% for p in other_personnel %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000006" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ p.role }}: Salary and benefits for {% if "Graduate" in p.role %}one PhD graduate student is requested for {{ p.months }} months per year for all {{ n_years }} years of the project.{% elif "Undergraduate" in p.role %}undergraduate student(s) at {{ p.hours }} hours per month for {{ p.months }} months per year.{% else %}{{ p.months }} months per year.{% endif %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000007" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="24ABB913" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRPr="00D73675" w:rsidRDefault="008060E5" w:rsidP="00AC7BDF">
+      <w:pPr>
+        <w:pStyle w:val="Heading3"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Fringe Benefits</w:t>
+      </w:r>
+      
+    </w:p>
+<w:p w14:paraId="6AE7C426" w14:textId="0B3546B1" w:rsidR="00D2605A" w:rsidRPr="00802E60" w:rsidRDefault="007F4C6A" w:rsidP="00D2605A">
+      <w:pPr>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:color w:val="0000FF"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t>[Delete fringe categories that are not used]</w:t>
+      </w:r>
+      
+      
+      
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t xml:space="preserve"> At Iowa State University, fringe benefits are specifically identify to each employee and charged individually as direct costs. These costs are budgeted as a percentage of an individual&#x2019;s salary based on his/her labor category. Current rates for applicable labor categories are listed below:</w:t>
+      </w:r>
+      
+      
+      
+      
+      
+    </w:p>
+<w:p w14:paraId="0A000008" w14:textId="77777777" w:rsidR="00802E60" w:rsidRDefault="00802E60" w:rsidP="002A67F5"><w:pPr><w:tabs><w:tab w:val="left" w:pos="3600"/></w:tabs><w:spacing w:after="0"/><w:ind w:left="540"/></w:pPr><w:r><w:t xml:space="preserve">Faculty</w:t><w:tab/><w:tab/><w:t xml:space="preserve">{{ faculty_rate }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000009" w14:textId="77777777" w:rsidR="00802E60" w:rsidRDefault="00802E60" w:rsidP="002A67F5"><w:pPr><w:tabs><w:tab w:val="left" w:pos="3600"/></w:tabs><w:spacing w:after="0"/><w:ind w:left="540"/></w:pPr><w:r><w:t xml:space="preserve">Professional &amp; Scientific</w:t><w:tab/><w:tab/><w:t xml:space="preserve">{{ ps_rate }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00000A" w14:textId="77777777" w:rsidR="00802E60" w:rsidRDefault="00802E60" w:rsidP="002A67F5"><w:pPr><w:tabs><w:tab w:val="left" w:pos="3600"/></w:tabs><w:spacing w:after="0"/><w:ind w:left="540"/></w:pPr><w:r><w:t xml:space="preserve">Graduate Students</w:t><w:tab/><w:tab/><w:t xml:space="preserve">{{ grad_rate }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00000B" w14:textId="77777777" w:rsidR="00802E60" w:rsidRDefault="00802E60" w:rsidP="002A67F5"><w:pPr><w:tabs><w:tab w:val="left" w:pos="3600"/></w:tabs><w:spacing w:after="0"/><w:ind w:left="540"/></w:pPr><w:r><w:t xml:space="preserve">Hourly Undergraduate Students</w:t><w:tab/><w:tab/><w:t xml:space="preserve">{{ ug_rate }}</w:t></w:r></w:p>
+<w:p w14:paraId="210CA0B2" w14:textId="46E75A4E" w:rsidR="009F20A9" w:rsidRPr="002A67F5" w:rsidRDefault="00802E60" w:rsidP="002A67F5">
+      <w:pPr>
+        <w:tabs>
+          <w:tab w:val="left" w:pos="3600"/>
+        </w:tabs>
+        <w:ind w:left="540"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Americorp</w:t>
+      <w:tab/><w:tab/><w:t xml:space="preserve"> 6.5%</w:t><w:tab/></w:r>
+      
+      
+      
+      
+      
+      
+    </w:p>
+<w:p w14:paraId="0A00000C" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="009C39BF"><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t xml:space="preserve">C. Equipment</w:t></w:r></w:p>
+<w:p w14:paraId="0A00000D" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">No equipment is being requested by Iowa State University.</w:t></w:r></w:p>
+<w:p w14:paraId="0A00000E" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="009C39BF"><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t xml:space="preserve">D. Travel			{{ total_travel }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00000F" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p for line in travel_lines %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000010" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{r line.rtext }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000011" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000012" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% for t in travel_details if t.trip_type != 'field' %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000013" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:b/><w:bCs/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:b/><w:bCs/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ t.label }}:			{{ t.total }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000014" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% if t.trip_type == 'conference' %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000015" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">One conference trip for {{ t.people_word }} persons (PI and doctoral student) to report research results at a conference in Years {{ t.years }}. These trips are estimated at {{ t.per_trip_cost }} per person for airfare ({{ t.airfare }}), registration ({{ t.registration }}), hotel for {{ t.nights_text }} nights ({{ t.hotel }}), and {{ t.meal_days_text }} days of reimbursable expenses ({{ t.expenses }}).</w:t></w:r></w:p>
+<w:p w14:paraId="0A000016" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% else %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000017" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">Travel is requested for {{ t.people_word }} persons in Years {{ t.years }} to support project objectives. Each trip is estimated at {{ t.per_trip_cost }} per person.</w:t></w:r></w:p>
+<w:p w14:paraId="0A000018" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% endif %}{% endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="20E119BA" w14:textId="11521B95" w:rsidR="008C17FB" w:rsidRPr="0046568D" w:rsidRDefault="00177D96" w:rsidP="00AC7BDF">
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:lastRenderedPageBreak/>
+        <w:t>F. Other Direct Costs</w:t>
+      </w:r>
+      
+    </w:p>
+<w:p w14:paraId="0A000019" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF"><w:pPr><w:pStyle w:val="Heading3"/></w:pPr><w:r><w:t xml:space="preserve">1. Materials and Supplies		{{ materials_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="34E83019" w14:textId="386E2A14" w:rsidR="00A0658C" w:rsidRPr="00B37C57" w:rsidRDefault="00A0658C" w:rsidP="00A0658C">
+      <w:pPr>
+        <w:keepNext/>
+        <w:jc w:val="both"/>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t xml:space="preserve">Funds are requested for the purchase of research and laboratory supplies that are necessary and essential for completion of tasks for the project. Necessary supplies for </w:t>
+      </w:r>
+      
+      
+      <w:r>
+        <w:rPr>
+          <w:color w:val="EE0000"/>
+        </w:rPr>
+        <w:t>&lt;SPECIFIC AREA&gt;</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t xml:space="preserve"> research proposed includes but is not limited to:</w:t>
+      </w:r>
+      
+    </w:p>
+<w:p w14:paraId="0A00001A" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% for item in materials_list %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00001B" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ item.name }}		{{ item.cost }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00001C" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{% endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00001D" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF"><w:pPr><w:pStyle w:val="Heading3"/></w:pPr><w:r><w:t xml:space="preserve">2. Publication Costs		{{ publication_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="58B1B317" w14:textId="0EABBE23" w:rsidR="008C17FB" w:rsidRDefault="00D2605A" w:rsidP="00D2605A">
+      <w:pPr>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t>These costs are requested to help to defray publication costs of scientific articles in various peer-reviewed journals as a result of this research.</w:t>
+      </w:r>
+    </w:p>
+<w:p w14:paraId="0A00001E" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF"><w:pPr><w:pStyle w:val="Heading3"/></w:pPr><w:r><w:t xml:space="preserve">3. Consultant Services		{{ consultant_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A00001F" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">Consultant services are requested to support specialized technical work for this project at a total cost of {{ consultant_total }}.</w:t></w:r></w:p>
+<w:p w14:paraId="0A000020" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF"><w:pPr><w:pStyle w:val="Heading3"/></w:pPr><w:r><w:t xml:space="preserve">4. Automatic Data Processing (ADP)/Computer Services		{{ storage_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000021" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">This cost is requested to support data storage for the project at a rate of {{ storage_rate }}/TB/yr on the Cylo server at the Agricultural and Biosystems Engineering department ({{ storage_total_tb }} TB/yr, {{ storage_server_life_tb }} TB over server life).</w:t></w:r></w:p>
+<w:p w14:paraId="0A000022" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF"><w:pPr><w:pStyle w:val="Heading3"/></w:pPr><w:r><w:t xml:space="preserve">8. Other Direct Costs</w:t></w:r></w:p>
+<w:p w14:paraId="0A000023" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/><w:u w:val="single"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/><w:u w:val="single"/></w:rPr><w:t xml:space="preserve">Tuition:			{{ tuition_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000024" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">Per University policy, tuition scholarship is provided for each graduate student, commensurate with his or her time on the project.</w:t></w:r></w:p>
+<w:p w14:paraId="0A000025" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p for line in tuition_lines %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000026" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{{ line.text }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000027" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">{%p endfor %}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000028" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/><w:u w:val="single"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/><w:u w:val="single"/></w:rPr><w:t xml:space="preserve">Other - Planet Imagery License:		{{ planet_total }}</w:t></w:r></w:p>
+<w:p w14:paraId="0A000029" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">The large amount of imagery required by this project will require its own license with Planet and concomitant access to its PlanetScope and/or SkySat archive at {{ planet_rate }}.</w:t></w:r></w:p>
+<w:p w14:paraId="0A00002A" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="009C39BF"><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t xml:space="preserve">G. Direct Costs:			{{ total_direct_sum }}</w:t></w:r></w:p>
+<w:p w14:paraId="1E6E6F8E" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRPr="00D73675" w:rsidRDefault="00D2605A" w:rsidP="00AC7BDF">
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Indirect Costs:</w:t>
+      </w:r>
+    </w:p>
+<w:p w14:paraId="0A00002B" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="00D2605A"><w:pPr><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="Arial"/><w:szCs w:val="22"/></w:rPr><w:t xml:space="preserve">Indirect costs are included at a rate of {{ indirect_rate }} of modified total direct costs (MTDC), which is Iowa State University's on-campus negotiated rate for research. Total indirect costs: {{ total_indirect_sum }}.</w:t></w:r></w:p>
+<w:p w14:paraId="3909A8E8" w14:textId="77777777" w:rsidR="008C00AE" w:rsidRPr="008B0F9E" w:rsidRDefault="008C00AE" w:rsidP="008C00AE">
+      <w:pPr>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:cs="Arial"/>
+          <w:szCs w:val="22"/>
+        </w:rPr>
+        <w:t>MTDC consists of all salaries and wages, fringe benefits, materials, supplies, services, travel, and subgrant or subcontracts up to the first $50,000 of each subgrant or subcontract (regardless of the period covered by the sub grant or subcontract). MTDC excludes equipment, capital expenditures, charges for patient care, student tuition remission, rental costs of off-site facilities, scholarships and fellowships, as well as the portion of each subgrant and subcontract in excess of $50,000.</w:t>
+      </w:r>
+    </w:p>
+<w:p w14:paraId="0A00002C" w14:textId="77777777" w:rsidR="00D2605A" w:rsidRDefault="00D2605A" w:rsidP="009C39BF"><w:pPr><w:pStyle w:val="Heading2"/></w:pPr><w:r><w:t xml:space="preserve">Total Direct and Indirect Costs:		{{ total_budget_sum }}</w:t></w:r></w:p>
+<w:sectPr w:rsidR="00406D95" w:rsidRPr="008B0F9E" w:rsidSect="00270719">
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720" w:header="720" w:footer="720" w:gutter="0"/>
+      <w:cols w:space="720"/>
+      <w:docGrid w:linePitch="360"/>
+    </w:sectPr>
+</w:body>
+</w:document>

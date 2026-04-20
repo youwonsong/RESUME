@@ -7,6 +7,9 @@ class Streamlyne:
     def __init__(self, path):
         self.full_text = grab_text(path)
         self.num_years = grab_num_years(self.full_text)
+        self.salary_text, self.fringe_text = separate_salary_and_fringe(self.full_text)
+        self.salary_text = re.sub(r'(?<=\d)(?=[A-Za-z])', '\n', self.salary_text)
+        self.fringe_text = re.sub(r'(?<=\d)(?=[A-Za-z])', '\n', self.fringe_text)
 
     def salary_extraction(self):
         """extracts the salary information from the streamlyne document
@@ -17,13 +20,11 @@ class Streamlyne:
             professional_df: dataframe with the information for the professionals
             undergrad_df: dataframe with the information for the undergraduate students
         """
-        personnel = grab_personnel(self.full_text)
-        faculty, grad_assistants, professional, undergrad = grab_salaries(personnel)
-        faculty_df = fill_out_salaries(faculty, self.num_years)
-        grad_df = fill_out_salaries(grad_assistants, self.num_years)
-        professional_df = fill_out_salaries(professional, self.num_years)
-        undergrad_df = fill_out_salaries(undergrad, self.num_years)
-        return faculty_df, grad_df, professional_df, undergrad_df
+        salaries = re.findall(r"(?s)Wages -.*?\d\n(.*?)(?:Salary|Fringe)", self.salary_text)
+        result = "".join(salaries)
+        result = result.replace(',', '')
+        salaries_df = fill_out_salaries(result, self.num_years)
+        return salaries_df
     
     def benefits_extraction(self):
         """Extracts the benefits information from a streamlyne document
@@ -34,18 +35,15 @@ class Streamlyne:
             ben_professional_df: the benefits information in a dataframe for the professionals
             ben_undergrad_df: the benefits information in a dataframe for the undergraduate students
         """
-        personnel = grab_personnel(self.full_text)
-        fringe = separate_salary_and_fringe(personnel)
-        ben_faculty, ben_grad_assistants, ben_professional, ben_undergrad = grab_benefits(fringe)
-        ben_faculty_df = fill_out_benefits(ben_faculty, self.num_years)
-        ben_grad_assistants_df = fill_out_benefits(ben_grad_assistants, self.num_years)
-        ben_professional_df = fill_out_benefits(ben_professional, self.num_years)
-        ben_undergrad_df = fill_out_benefits(ben_undergrad, self.num_years)
-        return ben_faculty_df, ben_grad_assistants_df, ben_professional_df, ben_undergrad_df
+        fringes = re.findall(r"(?s)Wages -.*?\d\n(.*?)(?:Salary|Calculated)", self.fringe_text)
+        fringes = "".join(fringes)
+        fringes = fringes.replace(',', '')
+        fringe_df = fill_out_benefits(fringes, self.num_years)
+        return fringe_df
 
     def travel_extraction(self):
        travel_text = grab_travel(self.full_text)
-       travel_df = grab_travel_data(travel_text, self.num_years)
+       travel_df = fill_out_travel_data(travel_text, self.num_years)
        return travel_df
 
     def direct_cost_extraction(self):
@@ -57,6 +55,39 @@ class Streamlyne:
        indirect_text = grab_indirect_costs(self.full_text)
        indirect_df = fill_out_indirect_costs(indirect_text, self.num_years)
        return indirect_df
+
+    def equipment_cost_extraction(self):
+      equipment_text = re.findall(r"(?s)NON-PERSONNEL\nEquipment.*?\d\n(.*?\n)Travel", self.full_text)
+      if(len(equipment_text)>0):
+         equipment_text = equipment_text[0]
+         equipment_text = equipment_text.replace(',', '')
+         equipment_df = fill_out_equipment(equipment_text, self.num_years)
+         return equipment_df
+      else:
+         return
+
+def create_equipment(numYears):
+  df = pd.DataFrame({
+        'Equipment Name': pd.Series(dtype='str'),
+    })
+  year_col_dict = {f'Year {i} Total': 0 for i in range(1, numYears + 1)}
+  df = df.assign(**year_col_dict)
+  return df
+
+def fill_out_equipment(text, numYears):
+  df = create_equipment(numYears)
+  names = re.findall(r'(?s)(.*?)(?:\d[.\d]+ *)', text)
+  moneys = re.findall(r'(?:(\d[.\d]+)[ ])', text)
+  names = [s.strip().replace('\n', ' ') for s in names if s.strip()]
+  for i in range(0, len(names)):
+    name = names[i]
+    new_row = []
+    new_row.append(name)
+    for j in range(0, numYears):
+        yearTotal = moneys[i *numYears + j]
+        new_row.append(float(yearTotal))
+    df.loc[len(df)] = new_row
+  return df
 
 def fill_out_indirect_costs(text, numYears):
   indirect_df = create_indirect_costs(numYears)
@@ -121,7 +152,7 @@ def grab_travel(text):
   travel = travel.replace(',', '')
   return travel
 
-def grab_travel_data(travel, num_years):
+def fill_out_travel_data(travel, num_years):
     travel_df = create_travel(num_years)
     domestic_data = re.findall(r"Domestic (.*)\n", travel)
     domestic_present = False
@@ -182,17 +213,6 @@ def create_benefits(numYears):
   df = df.assign(**year_col_dict)
   return df
 
-def grab_benefits(text):
-  faculty = re.findall(r"(?s)Faculty.*?\d\n(.*?)Salary", text)[0]
-  faculty = faculty.replace(',', '')
-  grad_assistants = re.findall(r"(?s)Assistants.*?\d\n(.*?)Salary", text)[0]
-  grad_assistants = grad_assistants.replace(',', '')
-  professional = re.findall(r"(?s)Scientific.*?\d\n(.*?)Salary", text)[0]
-  professional = professional.replace(',', '')
-  undergrad_stud = re.findall(r"(?s)Undergrad Student\n(.*?)Calculated", text)[0]
-  undergrad_stud = undergrad_stud.replace(',', '')
-  return faculty, grad_assistants, professional, undergrad_stud
-
 def fill_out_salaries(text, numYears):
     arr = re.findall(r"((?:.*\n){,2}[(].*?[)])\n", text)
     df = create_personnel(numYears)
@@ -217,19 +237,12 @@ def fill_out_salaries(text, numYears):
         df.loc[len(df)] = new_row
     return df
 
-def grab_salaries(text):
-    faculty = re.findall(r"(?s)Faculty.*?\d\n(.*?)Salary", text)[0]
-    grad_assistants = re.findall(r"(?s)Assistants.*?\d\n(.*?)Salary", text)[0]
-    professional = re.findall(r"(?s)Scientific.*?\d\n(.*?)Salary", text)[0]
-    undergrad_stud = re.findall(r"(?s)Undergrad Student\n(.*?)Fringe", text)[0]
-    return faculty, grad_assistants, professional, undergrad_stud
-
 def separate_salary_and_fringe(text):
-    salary = re.findall(r"(?s)Salary(.*?)Fringe", text)
+    salary = re.findall(r"(?s)(Salary.*?Fringe)", text)
     salary = salary[0]
     fringe = re.findall(r"(?s)Fringe(.*)", text)
     fringe = fringe[0]
-    return fringe
+    return salary, fringe
 
 def grab_personnel(full_text):
     personnel = re.findall(r"(?s)PERSONNEL(.*?)NON-PERSONNEL", full_text)
@@ -259,29 +272,16 @@ def grab_text(path):
 
 def main():
     print("Starting program")
-    strmlyne = Streamlyne("./streamlyne/streamlyne2.pdf")
-    faculty_df, grad_df, profess_df, undergrad_df = strmlyne.salary_extraction()
-    ben_faculty_df, ben_grad_df, ben_profess_df, ben_undergrad_df = strmlyne.benefits_extraction()
-    print("Faculty-----------------------------------------------------")
-    print("Salary:")
-    print(faculty_df.head())
-    print("Benefits:")
-    print(ben_faculty_df.head())
-    print("Professionals-----------------------------------------------")
-    print("Salary:")
-    print(profess_df.head())
-    print("Benefits:")
-    print(ben_profess_df.head())
-    print("Graduate----------------------------------------------------")
-    print("Salary:")
-    print(grad_df.head())
-    print("Benefits:")
-    print(ben_grad_df.head())
-    print("Undergrad---------------------------------------------------")
-    print("Salary")
-    print(undergrad_df.head())
-    print("Benefits:")
-    print(ben_undergrad_df.head())
+    strmlyne = Streamlyne("./streamlyne/Budget+Summary+Detailed+Page-479215.pdf")
+    salaries_df = strmlyne.salary_extraction()
+    #ben_faculty_df, ben_grad_df, ben_profess_df, ben_undergrad_df = strmlyne.benefits_extraction()
+    print("---------------------------------------------------------------------------------")
+    print("Salaries")
+    print(salaries_df)
+    print("---------------------------------------------------------------------------------")
+    print("Benefits")
+    benefits_df = strmlyne.benefits_extraction()
+    print(benefits_df)
     print("---------------------------------------------------------------------------------")
     print("Travel")
     travel_df = strmlyne.travel_extraction()
@@ -294,6 +294,10 @@ def main():
     print("Indirect Costs")
     indirect_df = strmlyne.indirect_cost_extraction()
     print(indirect_df.head())
+    print("---------------------------------------------------------------------------------")
+    print("Equipment Costs")
+    equipment_df = strmlyne.equipment_cost_extraction()
+    print(equipment_df)
 
 # Use the conditional to run the main function
 if __name__ == "__main__":
